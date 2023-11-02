@@ -17,28 +17,28 @@ env:
   IMAGE_NAME: ${{ github.repository }}
 
 jobs:
-  style_checks:
-    runs-on: ubuntu-latest
-    container:
-      image: node:20
-    steps:
-      # - name: PR title check
-      #   uses: thehanimo/pr-title-checker@5652588c80c479af803eabfbdb5a3895a77c1388 #v1.4.1
-      #   with:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      # - uses: epam/ai-dial-ci/actions/prepare_node@1.0.0
-      #   with:
-      #     node_version: ${{ inputs.node_version }}
-      - uses: actions/checkout@3df4ab11eba7bda6032a0b82a6bb43b11571feac #v4.0.0
-        with:
-          lfs: true
-      - name: Test
-        continue-on-error: ${{ inputs.bypass_checks }}
-        shell: bash
+  # style_checks:
+  #   runs-on: ubuntu-latest
+  #   container:
+  #     image: node:20
+  #   steps:
+  #     # - name: PR title check
+  #     #   uses: thehanimo/pr-title-checker@5652588c80c479af803eabfbdb5a3895a77c1388 #v1.4.1
+  #     #   with:
+  #     #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #     # - uses: epam/ai-dial-ci/actions/prepare_node@1.0.0
+  #     #   with:
+  #     #     node_version: ${{ inputs.node_version }}
+  #     - uses: actions/checkout@3df4ab11eba7bda6032a0b82a6bb43b11571feac #v4.0.0
+  #       with:
+  #         lfs: true
+  #     - name: Test
+  #       continue-on-error: ${{ inputs.bypass_checks }}
+  #       shell: bash
         
-        run: |
-          npm i
-          yarn lint
+  #       run: |
+  #         npm i
+  #         yarn lint
 
   code_checks:
     runs-on: ubuntu-latest
@@ -57,10 +57,11 @@ jobs:
           lfs: true
       - name: Test
         continue-on-error: ${{ inputs.bypass_checks }}
-        shell: bash
+        shell: sh
         run: |
           npm i
           yarn test --passWithNoTests
+          yarn lint
 
   # docker_build:
   #   runs-on: ubuntu-latest
