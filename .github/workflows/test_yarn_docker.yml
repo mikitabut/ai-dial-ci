@@ -43,7 +43,7 @@ jobs:
   code_checks:
     runs-on: ubuntu-latest
     container:
-      image: node:20
+      image: node:20-alpine
     steps:
       # - name: Install Node
       #   uses: epam/ai-dial-ci/actions/prepare_node@1.0.0
