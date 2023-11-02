@@ -43,15 +43,15 @@ jobs:
   code_checks:
     runs-on: ubuntu-latest
     container:
-      image: node:20
+      image: node:20-alpine
     steps:
       # - name: Install Node
       #   uses: epam/ai-dial-ci/actions/prepare_node@1.0.0
       #   with:
       #     node_version: ${{ inputs.node_version }}
-      # - name: Install Git LFS
-      #   run: |
-      #     apk update && apk add git git-lfs && git lfs install
+      - name: Install Git LFS
+        run: |
+          apk update && apk add git git-lfs && git lfs install
       - uses: actions/checkout@3df4ab11eba7bda6032a0b82a6bb43b11571feac #v4.0.0
         with:
           lfs: true
